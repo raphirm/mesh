@@ -16,9 +16,7 @@
 #include "conn_server.h"
 #include "conn_io.h"     // send_all
 
-void report_error( char* message ) {
-  fprintf( stderr, "ERROR: %s\n", message );
-}
+
 
 // Roles that a node can play
 #define HOP    0
@@ -76,7 +74,7 @@ int maiddfen(int argc, char *argv[])
   if( (connection_fd = connect_with_client( sock_fd )) != 0) {
     send_all(connection_fd, "Hello\n",         strlen("Hello\n"));
     send_all(connection_fd, "Hello Goodbye\n", strlen("Hello Goodbye\n"));
-  }
+  }l
   else {
     report_error("failed to get a client connection");
   }

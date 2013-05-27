@@ -48,8 +48,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mesh_OBJECTS = main.$(OBJEXT) conn_client.$(OBJEXT) \
-	conn_io.$(OBJEXT) conn_server.$(OBJEXT) \
-	demo_tcp_client.$(OBJEXT) demo_tcp_server.$(OBJEXT)
+	conn_io.$(OBJEXT) conn_server.$(OBJEXT) tools.$(OBJEXT)
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
@@ -242,8 +241,8 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
-	demo_tcp_client.c \
-	demo_tcp_server.c
+	main.h \
+	tools.c
 
 mesh_LDFLAGS = 
 mesh_LDADD = 
@@ -337,9 +336,8 @@ distclean-compile:
 include ./$(DEPDIR)/conn_client.Po
 include ./$(DEPDIR)/conn_io.Po
 include ./$(DEPDIR)/conn_server.Po
-include ./$(DEPDIR)/demo_tcp_client.Po
-include ./$(DEPDIR)/demo_tcp_server.Po
 include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/tools.Po
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

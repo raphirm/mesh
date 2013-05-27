@@ -3,6 +3,7 @@
 
 char *read_line(int socket_fd, char *s, int max_size) {
 	FILE *stream;
+
 	stream = fdopen(socket_fd, "r");
 	if( stream == NULL )
 	  return NULL;

@@ -30,7 +30,7 @@ void read_one_line( int sockfd) {
 
 }
 
-void report_error( char* message ) {
+void report_error2( char* message ) {
   fprintf( stderr, "ERROR: %s\n", message );
 }
 

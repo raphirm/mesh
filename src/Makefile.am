@@ -21,8 +21,8 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
-	demo_tcp_client.c \
-	demo_tcp_server.c
+	main.h \
+	tools.c
 
 mesh_LDFLAGS = 
 
