@@ -15,14 +15,12 @@ int listen_on_port(int portno )
 {
      int sockfd;
      struct sockaddr_in serv_addr;
-	printf("Hallo2");
      sockfd = socket(AF_INET, SOCK_STREAM, 0);
      if (sockfd == -1)
      {
        perror("ERROR opening socket");
        return -1;
      }
-	printf("hallo3");
      /* fix for WAITing sockets on linux */
      int yes = 1;
      if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, 

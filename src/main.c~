@@ -47,7 +47,7 @@ void parse_options( int argc, char *argv[])
       case 1: // optchar '-' will assign non-option to 1
         tcp_port = atoi(optarg);
         break;
-			
+
       case 'h':
       case '?':
       default:
@@ -67,29 +67,47 @@ void parse_options( int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	 perror("manno");
+
 	int sock_fd, connection_fd;
   pthread_t pthread;
   extern int optind;                // from unistd.h:getopt
 
   parse_options( argc, argv );
-
+while (1)
+{
   if( (sock_fd = listen_on_port(tcp_port) ) < 0 ) {
     report_error("failed to listen on the port");
     return sock_fd;
   }
- perror("Hallo");
-  if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-     char message[132]; /* we expect some line of text shorter than 59 chars */
 
-	if( read_line(sock_fd, message, 132) == NULL ) {
+  if( (connection_fd = connect_with_client( sock_fd )) != 0) {
+     unsigned char message[131]; /* we expect some line of text shorter than 132 chars */
+
+	if(read_line(connection_fd, message, 132) == NULL ) {
 		perror("Couldn't read a line of text");
 	}
+	  int i;
+	  
+	for (i = 0; i < sizeof(message); i++)
+	{
+		if (i > 0) 
+		{
+			printf(":");
+		}
+		else
+		{
+		printf("Message:");
+		}
+		printf("%02X", message[i]);
+	
+	}
+	printf("\n");
+	  printf("Length: %i\n", sizeof(message));
   }
   else {
     report_error("failed to get a client connection");
   }
-  disconnect_client( sock_fd);
-
+  disconnect_client( socke_fd);
+}
   return 0; 
 }

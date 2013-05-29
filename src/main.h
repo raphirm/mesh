@@ -3,10 +3,11 @@
 #define ZIEL   1
 #define QUELLE 2
 #define NO_TCP_PORT -1
+#define MSIZE 132
 
 typedef struct  {
- short paketID;
- char target;
+ unsigned short paketID;
+ unsigned char	 target;
  char paketType;
- char content[127];
-} paket ;
+ char content[128];
+} packet ;

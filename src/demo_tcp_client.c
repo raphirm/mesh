@@ -13,7 +13,7 @@ void recv_message( int sockfd) {
     perror("Couldn't read 5 chars");
   }
   else {
-    printf("Message from server: %s\n", message);
+    printf("Message from server: %s\n	", message);
   }
 
 }

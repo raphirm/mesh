@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "conn_io.h" // make sure we implement the same API
+#include "main.h"
 
 char *read_line(int socket_fd, char *s, int max_size) {
 	FILE *stream;
