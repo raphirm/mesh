@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "conn_io.h" // make sure we implement the same API
-#include "main.h"
 
-packet *read_line(int socket_fd, packet *s, int max_size) {
+struct paket *read_line(int socket_fd, strct paket *s, int max_size) {
 	FILE *stream;
 	stream = fdopen(socket_fd, "r");
 	if( stream == NULL )

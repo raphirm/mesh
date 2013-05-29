@@ -81,14 +81,14 @@ while (1)
   }
 
   if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-     unsigned char message[131]; /* we expect some line of text shorter than 132 chars */
+      struct paket message; /* we expect some line of text shorter than 132 chars */
 
-	if(read_line(connection_fd, message, 132) == NULL ) {
+	  if(read_line(connection_fd, &message, 132)->content == NULL ) {
 		perror("Couldn't read a line of text");
-	}
+
+	  }
 	  int i;
-	  
-	for (i = 0; i < sizeof(message); i++)
+	for (i = 0; i < sizeof(message.content); i++)
 	{
 		if (i > 0) 
 		{
@@ -96,13 +96,27 @@ while (1)
 		}
 		else
 		{
-		printf("Message:");
+		printf("Content:");
 		}
-		printf("%02X", message[i]);
-	
+		printf("%02X", message.content[i]);
+
 	}
 	printf("\n");
-	  printf("Length: %i\n", sizeof(message));
+	printf("paketID: %i\n", ntohs(message.paketID));
+	printf("Target: %u\n", (unsigned int)message.target);
+	printf("PaketType: %c\n", message.paketType);
+	  if(message.paketType == 'N'){
+		  int ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
+		  int prt = (int) (message.content[4]<<8)|message.content[5];
+		  struct newp newinfo = {ip,prt,0};		  
+		  printf("NewIP: %i.%i.%i.%i\n", ip[0], ip[1], ip[2], ip[3]);
+		  printf("NewPort: %i\n", prt);
+	  }
+	  if(message.paketType == 'C'){
+		  message.paketType = 'O';
+		   send_all(connection_fd, &message, sizeof(message));
+	  }
+
   }
   else {
     report_error("failed to get a client connection");

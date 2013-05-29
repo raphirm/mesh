@@ -5,9 +5,16 @@
 #define NO_TCP_PORT -1
 #define MSIZE 132
 
-typedef struct  {
- unsigned short paketID;
+struct  paket
+{
+ unsigned int paketID;
  unsigned char	 target;
  char paketType;
- char content[128];
-} paket ;
+ unsigned char content[128];
+};
+struct newp
+{
+ int ip[4];
+ unsigned short port;
+ char cont[122];
+};
