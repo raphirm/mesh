@@ -68,60 +68,60 @@ void parse_options( int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 
-	int sock_fd, connection_fd;
-  pthread_t pthread;
-  extern int optind;                // from unistd.h:getopt
+ int sock_fd, connection_fd;
+ pthread_t pthread;
+ extern int optind;                // from unistd.h:getopt
 
-  parse_options( argc, argv );
-while (1)
-{
+ parse_options( argc, argv );
+ while (1)
+ {
   if( (sock_fd = listen_on_port(tcp_port) ) < 0 ) {
-    report_error("failed to listen on the port");
-    return sock_fd;
+   report_error("failed to listen on the port");
+   return sock_fd;
   }
 
   if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-     struct paket message; /* we expect some line of text shorter than 132 chars */
+   struct paket message; /* we expect some line of text shorter than 132 chars */
 
-	  if(read_line(connection_fd, &message, 132)->content == NULL ) {
-		perror("Couldn't read a line of text");
+   if(read_line(connection_fd, &message, 132)->content == NULL ) 
+   {
+    perror("Couldn't read a line of text");
+   }
+   int i;
+   for (i = 0; i < sizeof(message.content); i++)
+   {
+    if (i > 0) 
+    {
+     printf(":");
+    }
+    else
+    {
+     printf("Content:");
+    }
+    printf("%02X", message.content[i]);
 
-	  }
-	  int i;
-	for (i = 0; i < sizeof(message.content); i++)
-	{
-		if (i > 0) 
-		{
-			printf(":");
-		}
-		else
-		{
-		printf("Content:");
-		}
-		printf("%02X", message.content[i]);
-
-	}
-	printf("\n");
-	printf("paketID: %i\n", ntohs(message.paketID));
-	printf("Target: %u\n", (unsigned int)message.target);
-	printf("PaketType: %c\n", message.paketType);
-	  if(message.paketType == 'N'){
-		  int ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
-		  int prt = (int) (message.content[4]<<8)|message.content[5];
-		  struct newp newinfo = {ip,prt,0};		  
-		  printf("NewIP: %i.%i.%i.%i\n", ip[0], ip[1], ip[2], ip[3]);
-		  printf("NewPort: %i\n", prt);
-	  }
-	  if(message.paketType == 'C'){
-		  message.paketType = 'O';
-		   send_all(connection_fd, &message, sizeof(message));
-	  }
+   }
+   printf("\n");
+   printf("paketID: %i\n", ntohs(message.paketID));
+   printf("Target: %u\n", (unsigned int)message.target);
+   printf("PaketType: %c\n", message.paketType);
+   if(message.paketType == 'N'){
+    int ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
+    int prt = (int) (message.content[4]<<8)|message.content[5];
+    struct newp newinfo = {ip,prt,0};		  
+    printf("NewIP: %i.%i.%i.%i\n", ip[0], ip[1], ip[2], ip[3]);
+    printf("NewPort: %i\n", prt);
+   }
+   if(message.paketType == 'C'){
+    message.paketType = 'O';
+    send_all(connection_fd, &message, sizeof(message));
+   }
 
   }
   else {
-    report_error("failed to get a client connection");
+   report_error("failed to get a client connection");
   }
   disconnect_client( sock_fd);
 }
-  return 0; 
+return 0; 
 }
