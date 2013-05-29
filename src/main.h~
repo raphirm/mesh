@@ -7,14 +7,14 @@
 
 struct  paket
 {
- unsigned int paketID;
+ unsigned short paketID;
  unsigned char	 target;
  char paketType;
  unsigned char content[128];
 };
 struct newp
 {
- int ip[4];
+ unsigned short ip[4];
  unsigned short port;
  char cont[122];
 };

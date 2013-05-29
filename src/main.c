@@ -106,11 +106,31 @@ int main(int argc, char *argv[])
    printf("Target: %u\n", (unsigned int)message.target);
    printf("PaketType: %c\n", message.paketType);
    if(message.paketType == 'N'){
-    int ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
-    int prt = (int) (message.content[4]<<8)|message.content[5];
-    struct newp newinfo = {ip,prt,0};		  
-    printf("NewIP: %i.%i.%i.%i\n", ip[0], ip[1], ip[2], ip[3]);
-    printf("NewPort: %i\n", prt);
+    unsigned char ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
+    unsigned short prt = (unsigned short) (message.content[4]<<8)|message.content[5];
+	char con[122];
+	for (i = 6; i < 128; i++){
+		con[i-5] = message.content[i];
+	}
+    struct newp newinfo = {{*ip},{prt},{*con}};		  
+    printf("NewIP: %i.%i.%i.%i\n", newinfo.ip[0], newinfo.ip[1], newinfo.ip[2], newinfo.ip[3]);
+    printf("NewPort: %i\n", newinfo.port);
+	printf("NewContent: %s\n", newinfo.cont);
+	int i;
+	for (i = 0; i < sizeof(newinfo.cont); i++)
+    {
+     if (i > 0) 
+     {
+      printf(":");
+     }
+     else
+     {
+      printf("NewMsgContent:");
+     }
+     printf("%02X", newinfo.cont[i]);
+
+    }
+	printf("\n");
    }
    if(message.paketType == 'C'){
     message.paketType = 'O';
