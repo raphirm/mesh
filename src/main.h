@@ -18,3 +18,10 @@ struct newp
  unsigned short port;
  char cont[122];
 };
+
+struct nodelist
+{
+	unsigned char ip;
+	unsigned short port;
+	struct nodelist *next;
+};

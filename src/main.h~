@@ -14,7 +14,14 @@ struct  paket
 };
 struct newp
 {
- unsigned short ip[4];
+ unsigned char ip[4];
  unsigned short port;
  char cont[122];
+};
+
+struct nodelist
+{
+	unsigned char *ip;
+	unsigned short *port;
+	struct nodelist *next;
 };

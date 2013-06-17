@@ -22,7 +22,11 @@ mesh_SOURCES = \
 	conn_server.c \
 	conn_server.h \
 	main.h \
-	tools.c
+	tools.c \
+	parse.c \
+	parse.h \
+	new.c \
+	new.h
 
 mesh_LDFLAGS = 
 
