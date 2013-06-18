@@ -4,7 +4,7 @@
 #include "main.h"
 #include <stdbool.h>
 
-void processForBroadcast(struct nodelist *nodes, struct packagelist *packages, struct paket *packet)
+void processForBroadcast(struct nodelist *nodes, struct pkglist *packages, struct paket message, struct route *routes)
 {
-
+	
 }

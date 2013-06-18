@@ -42,15 +42,12 @@ void pkg_add(struct pkglist *pkgroot, unsigned short id , unsigned char target)
 		bef->target = target;	
 		bef->id = id;
 		bef->next = NULL;
-		return;
+		return bef;
 	}
 	else{
 		printf("Node Already added\n");
+		return NULL;
 	}
-}
-void pkg_addNextHop(struct pkglist *pkg, struct nodelist *node)
-{
-	pkg->nexthop = node;
 }
 
 void pkg_remove(struct pkglist *pkgroot, unsigned short id , unsigned char target){

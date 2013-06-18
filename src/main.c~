@@ -27,6 +27,7 @@
 #include "main.h"
 #include "parse.h"
 
+
 short node_role = HOP;
 
 int   tcp_port  = NO_TCP_PORT;
@@ -38,7 +39,7 @@ void parse_options( int argc, char *argv[])
 	char optchar;
 
 	while( ( optchar = getopt( argc, argv, "-hqz" ) ) != -1 ) {
-		tcp_port = 4536;
+
 		switch( optchar ) {
 			case 'z':
 				node_role = ZIEL;
@@ -77,9 +78,18 @@ int main(int argc, char *argv[])
 	noderoot->ip[0] =  ip[0];
 	noderoot->ip[1] = ip[1];
 	noderoot->ip[2] = ip[2];
-	nodreoot->ip[3] = ip[3];
+	noderoot->ip[3] = ip[3];
 	noderoot->port = port;	
-	
+	struct pkglist *pkgroot;
+	pkgroot = malloc(sizeof(struct pkglist));
+	pkgroot->next = NULL;
+	pkgroot->id = 0;
+	pkgroot->target = '0';
+	struct route *routes;
+	routes = malloc(sizeof(struct route));
+	routes->zielt = NULL;
+	routes->quellet = NULL;
+	                
 
 	
 	int sock_fd, connection_fd;
@@ -87,7 +97,6 @@ int main(int argc, char *argv[])
 	extern int optind;                // from unistd.h:getopt
 
 	parse_options( argc, argv );
-	tcp_port = 4536;
 	while (1)
 	{
 		if( (sock_fd = listen_on_port(tcp_port) ) < 0 ) {
@@ -96,7 +105,7 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-			parse(connection_fd, noderoot);
+			parse(connection_fd, noderoot, pkgroot, routes);
 		}
 		else {
 			report_error("failed to get a client connection");

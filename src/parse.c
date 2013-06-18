@@ -8,10 +8,10 @@
 #include "main.h"
 #include "new.h"
 #include "broadcast.h"
+#include "pkglist.h"
 
 
-
-void parse(int connection_fd, struct nodelist *noderoot)
+void parse(int connection_fd, struct nodelist *noderoot, struct pkglist *pkgroot, struct route *routes, short node_role)
 {
 	struct paket message; /* we expect some line of text shorter than 132 chars */
 
@@ -47,9 +47,28 @@ void parse(int connection_fd, struct nodelist *noderoot)
 	}
 
 	if(message.paketType == 'C'){
+		struct pkglist *node = pkg_search (pkgroot, message.paketID, message.target);
+		if(node = NULL){
+			printf("Neues Packet empfangen mit ID %i, route vorhanden?", message.paketID);
+			
+			node = pkg_add (pkgroot, message.paketID, message.target);
 
-		message.paketType = 'O';
-		send_all(connection_fd, &message, sizeof(message));
+			if((message.target == 1 && routes->zielt != NULL) ||(message.target ==0 && routes->quellet != NULL)){
+				printf("Route schon vorhanden\n");
+			}
+			else if((message.target == 1 && node_role == ZIEL) || (message.target == 0 && node_role == QUELLE)){
+				printf("Das Packet ist angekommen");
+			}else{
+				processForBroadcast (noderoot, node, message, routes);
+			}
+
+		}else{
+			printf("Packet mit id %i schon gesehen, verwerfen!", message.paketID);
+			shutdown(connection_fd, 2);
+		}
+		
+		//message.paketType = 'O';
+		//send_all(connection_fd, &message, sizeof(message));
 	}
 	printf("\n\n\n");
 }
