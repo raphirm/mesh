@@ -69,13 +69,19 @@ void parse_options( int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	struct nodelist *root;
+	struct nodelist *noderoot;
 	unsigned char ip[4] = { '0', '0', '0', '0',};
 	unsigned short port = 0;	
-	root = malloc(sizeof(struct nodelist));
-	root->next =NULL;
-	root->ip =  ip;	
-	root->port = port;	
+	noderoot = malloc(sizeof(struct nodelist));
+	noderoot->next =NULL;
+	noderoot->ip[0] =  ip[0];
+	noderoot->ip[1] = ip[1];
+	noderoot->ip[2] = ip[2];
+	noderoot->ip[3] = ip[3];
+	noderoot->port = port;	
+	
+
+	
 	int sock_fd, connection_fd;
 	pthread_t pthread;
 	extern int optind;                // from unistd.h:getopt
@@ -90,7 +96,7 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-			parse(connection_fd, root);
+			parse(connection_fd, noderoot);
 		}
 		else {
 			report_error("failed to get a client connection");

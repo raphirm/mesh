@@ -1,5 +1,7 @@
 #ifndef __NEW_H__
 #define __NEW_H__
 void node_add(struct nodelist *, unsigned char x[] , unsigned short y);
-void print_list(struct nodelist *);
+void node_remove(struct nodelist *, unsigned char x[], unsigned short y);
+struct nodelist *node_search(struct nodelist *, unsigned char x[], unsigned short y);
+void node_list(struct nodelist *);
 #endif

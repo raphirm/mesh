@@ -18,7 +18,8 @@ parse.o: /home/rm/code/seminar_c/mesh/src/parse.c /usr/include/stdlib.h \
  /usr/include/getopt.h /home/rm/code/seminar_c/mesh/src/conn_server.h \
  /home/rm/code/seminar_c/mesh/src/conn_io.h \
  /home/rm/code/seminar_c/mesh/src/main.h \
- /home/rm/code/seminar_c/mesh/src/new.h
+ /home/rm/code/seminar_c/mesh/src/new.h \
+ /home/rm/code/seminar_c/mesh/src/broadcast.h
 
 /usr/include/stdlib.h:
 
@@ -97,3 +98,5 @@ parse.o: /home/rm/code/seminar_c/mesh/src/parse.c /usr/include/stdlib.h \
 /home/rm/code/seminar_c/mesh/src/main.h:
 
 /home/rm/code/seminar_c/mesh/src/new.h:
+
+/home/rm/code/seminar_c/mesh/src/broadcast.h:

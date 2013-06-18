@@ -14,7 +14,8 @@ new.o: /home/rm/code/seminar_c/mesh/src/new.c /usr/include/stdlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h /usr/include/xlocale.h \
- /home/rm/code/seminar_c/mesh/src/main.h
+ /home/rm/code/seminar_c/mesh/src/main.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stdbool.h
 
 /usr/include/stdlib.h:
 
@@ -79,3 +80,5 @@ new.o: /home/rm/code/seminar_c/mesh/src/new.c /usr/include/stdlib.h \
 /usr/include/xlocale.h:
 
 /home/rm/code/seminar_c/mesh/src/main.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stdbool.h:

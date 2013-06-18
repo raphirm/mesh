@@ -49,7 +49,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mesh_OBJECTS = main.$(OBJEXT) conn_client.$(OBJEXT) \
 	conn_io.$(OBJEXT) conn_server.$(OBJEXT) tools.$(OBJEXT) \
-	parse.$(OBJEXT) new.$(OBJEXT)
+	parse.$(OBJEXT) new.$(OBJEXT) broadcast.$(OBJEXT) \
+	pkglist.$(OBJEXT)
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
@@ -248,7 +249,11 @@ mesh_SOURCES = \
 	parse.c \
 	parse.h \
 	new.c \
-	new.h
+	new.h \
+	broadcast.c \
+	broadcast.h \
+	pkglist.c \
+	pkglist.h
 
 mesh_LDFLAGS = 
 mesh_LDADD = 
@@ -339,12 +344,14 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/broadcast.Po
 include ./$(DEPDIR)/conn_client.Po
 include ./$(DEPDIR)/conn_io.Po
 include ./$(DEPDIR)/conn_server.Po
 include ./$(DEPDIR)/main.Po
 include ./$(DEPDIR)/new.Po
 include ./$(DEPDIR)/parse.Po
+include ./$(DEPDIR)/pkglist.Po
 include ./$(DEPDIR)/tools.Po
 
 .c.o:

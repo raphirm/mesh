@@ -7,10 +7,11 @@
 #include "conn_io.h"     // send_all
 #include "main.h"
 #include "new.h"
+#include "broadcast.h"
 
 
 
-void parse(int connection_fd, struct nodelist *root)
+void parse(int connection_fd, struct nodelist *noderoot)
 {
 	struct paket message; /* we expect some line of text shorter than 132 chars */
 
@@ -40,11 +41,13 @@ void parse(int connection_fd, struct nodelist *root)
 
 		unsigned char ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
 		unsigned short prt = (unsigned short) (message.content[4]<<8)|message.content[5];
-		node_add(root, ip, prt);
-		print_list(root);
+		node_add(noderoot, ip, prt);
+		node_list(noderoot);
+		node_search(noderoot, ip, prt);
 	}
 
 	if(message.paketType == 'C'){
+
 		message.paketType = 'O';
 		send_all(connection_fd, &message, sizeof(message));
 	}

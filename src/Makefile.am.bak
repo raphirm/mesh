@@ -25,7 +25,11 @@ mesh_SOURCES = \
 	tools.c \
 	parse.c \
 	parse.h \
-	new.c
+	new.c \
+	new.h \
+	broadcast.c \
+	broadcast.h \
+	pkglist.c
 
 mesh_LDFLAGS = 
 

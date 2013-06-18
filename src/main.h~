@@ -21,7 +21,15 @@ struct newp
 
 struct nodelist
 {
-	unsigned char *ip;
-	unsigned short *port;
+	unsigned char ip[4];
+	unsigned short port;
 	struct nodelist *next;
+};
+
+struct pkglist
+{
+	unsigned short paketID;
+	unsigned char target;
+	struct nodelist *nexthop;
+	struct pkglist *next;
 };
