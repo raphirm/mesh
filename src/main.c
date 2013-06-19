@@ -25,7 +25,8 @@
 #include "conn_server.h"
 #include "conn_io.h"     // send_all
 #include "main.h"
-#include "parse.h"
+#include <pthread.h>
+#include "messagelist.h"
 
 
 short node_role = HOP;
@@ -70,21 +71,6 @@ void parse_options( int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	struct nodelist *noderoot;
-	unsigned char ip[4] = { '0', '0', '0', '0',};
-	unsigned short port = 0;	
-	noderoot = malloc(sizeof(struct nodelist));
-	noderoot->next =NULL;
-	noderoot->ip[0] =  ip[0];
-	noderoot->ip[1] = ip[1];
-	noderoot->ip[2] = ip[2];
-	noderoot->ip[3] = ip[3];
-	noderoot->port = port;	
-	struct pkglist *pkgroot;
-	pkgroot = malloc(sizeof(struct pkglist));
-	pkgroot->next = NULL;
-	pkgroot->id = 0;
-	pkgroot->target = '0';
 	struct route *routes;
 	routes = malloc(sizeof(struct route));
 	routes->zielt = NULL;
@@ -105,7 +91,8 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-			parse(connection_fd, noderoot, pkgroot, routes, node_role);
+		
+			//parse(connection_fd, noderoot, pkgroot, routes, node_role);
 		}
 		else {
 			report_error("failed to get a client connection");

@@ -23,13 +23,12 @@ struct newp
 struct bufmsg
 {
 	struct paket pkg[MAX_BUF_SIZE];
-	int wr_idx;
-	int rd_idx;
+	int rd;
+	int wr;
 };
 struct nodelist
 {
-	unsigned char ip[4];
-	unsigned short port;
+	int socket;
 	struct nodelist *next;
 	pthread_t *sock;
 	struct bufmsg *buffer;

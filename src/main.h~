@@ -28,8 +28,7 @@ struct bufmsg
 };
 struct nodelist
 {
-	unsigned char ip[4];
-	unsigned short port;
+	int socket;
 	struct nodelist *next;
 	pthread_t *sock;
 	struct bufmsg *buffer;
@@ -40,7 +39,7 @@ struct route
 {
 	struct nodelist *zielt;
 	struct ndoelist *quellet;
-}
+};
 
 struct pkglist
 {

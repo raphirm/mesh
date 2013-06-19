@@ -3,6 +3,7 @@
 #include <string.h>      // strlen
 #include "main.h"
 #include <stdbool.h>
+#include <pthread.h>
 
 
 void node_remove(struct nodelist *root, unsigned char ip[4], unsigned short port)
@@ -69,7 +70,7 @@ void node_list(struct nodelist *root){
     	conductor = conductor->next;
 	}
 }
-void node_add(struct nodelist *root, unsigned char ip[4], unsigned short port)
+void node_add(struct nodelist *root,int socket, pthread_t *sock, struct bufmsg *buffer )
 {	
 	if(node_search (root, ip, port) == NULL){
 	

@@ -25,7 +25,8 @@
 #include "conn_server.h"
 #include "conn_io.h"     // send_all
 #include "main.h"
-#include "parse.h"
+#include <pthread.h>
+#include "messagelist.h"
 
 
 short node_role = HOP;
@@ -105,7 +106,8 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-			parse(connection_fd, noderoot, pkgroot, routes);
+		
+			//parse(connection_fd, noderoot, pkgroot, routes, node_role);
 		}
 		else {
 			report_error("failed to get a client connection");
