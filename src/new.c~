@@ -22,7 +22,7 @@ void node_remove(struct nodelist *root, unsigned char ip[4], unsigned short port
 		del = bef->next;
 		if ( del->next == NULL)
 		{
-			endReached = true;l
+			endReached = true;
 			break;
 		}
 

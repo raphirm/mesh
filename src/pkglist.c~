@@ -49,10 +49,6 @@ void pkg_add(struct pkglist *pkgroot, unsigned short id , unsigned char target)
 		return NULL;
 	}
 }
-void pkg_addNextHop(struct pkglist *pkg, struct nodelist *node)
-{
-	pkg->nexthop = node;
-}
 
 void pkg_remove(struct pkglist *pkgroot, unsigned short id , unsigned char target){
 	struct pkglist *bef = pkgroot;

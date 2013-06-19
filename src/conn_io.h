@@ -4,7 +4,7 @@
  * A simple wrapper around "fgets". Read a newline terminated
  * line from fd.  See 'man 2 fgets'
  */
-struct paket *read_line(int socket_fd, struct  paket* s, int max_size);
+FILE *read_line(int socket_fd);
 
 /*
  * A simple wrappter around "write", that tries to send out all bytes

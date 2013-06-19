@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "conn_io.h" // make sure we implement the same API
 
-struct paket *read_line(int socket_fd, struct paket *s, int max_size) {
+FILE *read_line(int socket_fd) {
 	FILE *stream;
 	stream = fdopen(socket_fd, "r");
 	if( stream == NULL )
 	  return NULL;
 
-	return fgets(s, max_size, stream);
+	return stream;
 }
 
 int send_all(int socket_fd, void* bytes, size_t len) {

@@ -15,10 +15,9 @@ void parse(int connection_fd, struct nodelist *noderoot, struct pkglist *pkgroot
 {
 	struct paket message; /* we expect some line of text shorter than 132 chars */
 
-	if(read_line(connection_fd, &message, 132)->content == NULL ) 
+	while(fgets(&message, 132, read_line(connection_fd)) != NULL ) 
 	{
-		perror("Couldn't read a line of text");
-	}
+		
 	int i;
 	for (i = 0; i < sizeof(message.content); i++)
 	{
@@ -47,28 +46,31 @@ void parse(int connection_fd, struct nodelist *noderoot, struct pkglist *pkgroot
 	}
 
 	if(message.paketType == 'C'){
-		struct pkglist *node = pkg_search (pkgroot, message.paketID, message.target);
-		if(node = NULL){
-			printf("Neues Packet empfangen mit ID %i, route vorhanden?", message.paketID);
+		struct pkglist *node = pkg_search (pkgroot, message.paketID, (unsigned int) message.target);
+		if(node == NULL){
+			printf("Neues Packet empfangen mit ID %i, route vorhanden?\n", ntohs(message.paketID));
 			
 			node = pkg_add (pkgroot, message.paketID, message.target);
-
-			if((message.target == 1 && routes->zielt != NULL) ||(message.target ==0 && routes->quellet != NULL)){
-				printf("Route schon vorhanden\n");
+			if((message.target == 1 && node_role == ZIEL) || (message.target == 0 && node_role == QUELLE)){
+				printf("Am Ziel angekommen! Sende antwort!\n");
+				message.paketType = 'O';
+				send_all(connection_fd, &message, sizeof(message));
 			}
-			else if((message.target == 1 && node_role == ZIEL) || (message.target == 0 && node_role == QUELLE)){
-				printf("Das Packet ist angekommen");
+			else if((message.target == 1 && routes->zielt != NULL) ||(message.target ==0 && routes->quellet != NULL)){
+				printf("Route schon vorhanden\n");
 			}else{
-				processForBroadcast (noderoot, node, message);
+				printf("keine Route vorhanden, broadcaste in das Netzwerk!\n");
+				processForBroadcast (noderoot, node, message, routes);
 			}
 
 		}else{
-			printf("Packet mit id %i schon gesehen, verwerfen!", message.paketID);
-			shutdown(connection_fd, 2);
+			printf("Packet mit id %i schon gesehen, verwerfen!\n",  ntohs(message.paketID));
+			message.paketType = 'F';
+				send_all(connection_fd, &message, sizeof(message));
 		}
 		
-		//message.paketType = 'O';
-		//send_all(connection_fd, &message, sizeof(message));
+		
 	}
 	printf("\n\n\n");
+	}
 }
