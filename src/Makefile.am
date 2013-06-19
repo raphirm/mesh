@@ -22,7 +22,6 @@ mesh_SOURCES = \
 	conn_server.c \
 	conn_server.h \
 	main.h \
-	tools.c \
 	parse.c \
 	parse.h \
 	new.c \
@@ -30,7 +29,8 @@ mesh_SOURCES = \
 	broadcast.c \
 	broadcast.h \
 	pkglist.c \
-	pkglist.h
+	pkglist.h \
+	pkglsthandler.c
 
 mesh_LDFLAGS = 
 

@@ -42,9 +42,18 @@ struct route
 	struct ndoelist *quellet;
 };
 
+
+
+
+/* depricated */
 struct pkglist
 {
 	unsigned short id;
 	unsigned char target;
 	struct pkglist *next;
 };
+
+struct pkgLstItem {
+	unsigned short pid;
+	int socket;
+}
