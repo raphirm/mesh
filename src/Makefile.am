@@ -20,8 +20,21 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
+<<<<<<< HEAD
 	messagelist.c \
 	messagelist.h
+=======
+	main.h \
+	parse.c \
+	parse.h \
+	new.c \
+	new.h \
+	broadcast.c \
+	broadcast.h \
+	pkglist.c \
+	pkglist.h \
+	pkglsthandler.c
+>>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
 
 mesh_LDFLAGS = 
 

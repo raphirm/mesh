@@ -40,10 +40,22 @@ struct route
 	struct nodelist *zielt;
 	struct ndoelist *quellet;
 };
+<<<<<<< HEAD
+=======
 
+
+
+>>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
+
+/* depricated */
 struct pkglist
 {
 	unsigned short id;
 	unsigned char target;
 	struct pkglist *next;
 };
+
+struct pkgLstItem {
+	unsigned short id;
+	int socket;
+}
