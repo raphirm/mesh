@@ -47,14 +47,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-<<<<<<< HEAD
 am_mesh_OBJECTS = main.$(OBJEXT) conn_io.$(OBJEXT) \
 	conn_server.$(OBJEXT) messagelist.$(OBJEXT)
-=======
-am_mesh_OBJECTS = main.$(OBJEXT) conn_client.$(OBJEXT) \
-	conn_io.$(OBJEXT) conn_server.$(OBJEXT) parse.$(OBJEXT) \
-	new.$(OBJEXT) broadcast.$(OBJEXT) pkglist.$(OBJEXT)
->>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
@@ -255,20 +249,8 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
-<<<<<<< HEAD
 	messagelist.c \
 	messagelist.h
-=======
-	main.h \
-	parse.c \
-	parse.h \
-	new.c \
-	new.h \
-	broadcast.c \
-	broadcast.h \
-	pkglist.c \
-	pkglist.h
->>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
 
 mesh_LDFLAGS = 
 mesh_LDADD = 
@@ -362,13 +344,9 @@ distclean-compile:
 include ./$(DEPDIR)/conn_io.Po
 include ./$(DEPDIR)/conn_server.Po
 include ./$(DEPDIR)/main.Po
-<<<<<<< HEAD
-include ./$(DEPDIR)/messagelist.Po
-=======
 include ./$(DEPDIR)/new.Po
 include ./$(DEPDIR)/parse.Po
 include ./$(DEPDIR)/pkglist.Po
->>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
