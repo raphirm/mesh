@@ -53,6 +53,12 @@ struct pkglist
 };
 
 struct pkgLstItem {
+	unsigned short id;
 	unsigned short pid;
-	int socket;
+	int sourceSocket;
+}
+struct nodelist{
+	int tSocket;
+	pthread_t thread;
+	struct bufmsg *buffer;
 }

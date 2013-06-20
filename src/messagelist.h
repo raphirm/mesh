@@ -15,8 +15,9 @@
 
 
 typedef struct llist_node {
-  int index;
-  void *datap;
+	int socket;
+	thread_t thread;	
+  struct bufmsg *buffer;
   struct llist_node *nextp;
 } llist_node_t;
 

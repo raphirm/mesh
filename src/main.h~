@@ -23,8 +23,8 @@ struct newp
 struct bufmsg
 {
 	struct paket pkg[MAX_BUF_SIZE];
-	int wr_idx;
-	int rd_idx;
+	int rd;
+	int wr;
 };
 struct nodelist
 {
@@ -40,12 +40,9 @@ struct route
 	struct nodelist *zielt;
 	struct ndoelist *quellet;
 };
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 1510bda2c8317c198f972b8926ab17ae1b74f046
 
 /* depricated */
 struct pkglist
@@ -57,5 +54,11 @@ struct pkglist
 
 struct pkgLstItem {
 	unsigned short id;
-	int socket;
+	unsigned short pid;
+	int sourceSocket;
+}
+struct nodelist{
+	int sourceSocket;
+	pthread_t thread;
+	struct bufmsg *buffer;
 }
