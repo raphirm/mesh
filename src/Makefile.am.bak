@@ -20,9 +20,14 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
-	messagelist.c
+	messagelist.c \
+	messagelist.h \
+	thread.c \
+	thread.h \
+	buffer.c
 
 mesh_LDFLAGS = 
 
-mesh_LDADD = 
+mesh_LDADD = \
+	-lpthread
 

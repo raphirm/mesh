@@ -20,13 +20,23 @@
 #include <stdlib.h>      // exit
 #include <stdio.h>
 #include <string.h>      // strlen
-
+#include <assert.h>
 #include <unistd.h>      // getopt
+#include "messagelist.h"
+#include "main.h"
 #include "conn_server.h"
 #include "conn_io.h"     // send_all
-#include "main.h"
+
+#include "thread.h"
 #include <pthread.h>
-#include "messagelist.h"
+#include <stdbool.h>
+#include "buffer.h"
+
+
+
+
+ 
+#define NUM_THREADS     5
 
 
 short node_role = HOP;
@@ -34,6 +44,11 @@ short node_role = HOP;
 int   tcp_port  = NO_TCP_PORT;
 void report_error( char* message ) {
 	fprintf( stderr, "ERROR: %s\n", message );
+}
+void  *startthread(void *argument)
+{
+	
+	startsthread (argument);
 }
 void parse_options( int argc, char *argv[])
 {
@@ -75,8 +90,18 @@ int main(int argc, char *argv[])
 	routes = malloc(sizeof(struct route));
 	routes->zielt = NULL;
 	routes->quellet = NULL;
-	                
-
+	llist_t *nodes;
+	nodes = malloc(sizeof(llist_t));
+	llist_init(nodes);
+	
+	struct pkgListItem packages[1024];
+	int i;
+	for(i = 0; i < sizeof(packages) / sizeof(struct pkgListItem); i++)
+	{
+		packages[i].id = 0;
+		packages[i].pid = 0;
+		packages[i].sourceSocket = 0;
+	}
 	
 	int sock_fd, connection_fd;
 	pthread_t pthread;
@@ -91,7 +116,22 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
+			pthread_t thread;
+			struct bufmsg *buffer;
+			buffer = malloc(sizeof(struct bufmsg));
+			buf_init(buffer);
+			bool alive = true;
+			llist_insert_data(connection_fd, &thread, buffer, nodes, alive);
+			struct threadinfos *ti;
+			ti = malloc(sizeof(struct threadinfos));
+			ti->nodes = nodes;
+			ti->packages = &packages;
+			ti->routes = routes;
+			ti->me = llist_find_data (connection_fd, nodes);
+			pthread_create(&thread, NULL, (void*)&startthread ,(void *) ti);
+			pthread_detach(&thread);
 		
+			//start_thread
 			//parse(connection_fd, noderoot, pkgroot, routes, node_role);
 		}
 		else {
@@ -101,3 +141,5 @@ int main(int argc, char *argv[])
 	}
 	return 0; 
 }
+
+

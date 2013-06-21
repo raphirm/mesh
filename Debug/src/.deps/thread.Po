@@ -1,4 +1,4 @@
-main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
+thread.o: /home/rm/code/seminar_c/mesh/src/thread.c /usr/include/stdlib.h \
  /usr/include/features.h /usr/include/bits/predefs.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
@@ -22,8 +22,11 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stdbool.h \
  /home/rm/code/seminar_c/mesh/src/main.h \
  /home/rm/code/seminar_c/mesh/src/conn_server.h \
- /home/rm/code/seminar_c/mesh/src/conn_io.h \
- /home/rm/code/seminar_c/mesh/src/thread.h \
+ /home/rm/code/seminar_c/mesh/src/conn_io.h /usr/include/sys/socket.h \
+ /usr/include/sys/uio.h /usr/include/bits/uio.h \
+ /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
  /home/rm/code/seminar_c/mesh/src/buffer.h
 
 /usr/include/stdlib.h:
@@ -118,6 +121,22 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
 
 /home/rm/code/seminar_c/mesh/src/conn_io.h:
 
-/home/rm/code/seminar_c/mesh/src/thread.h:
+/usr/include/sys/socket.h:
+
+/usr/include/sys/uio.h:
+
+/usr/include/bits/uio.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
 
 /home/rm/code/seminar_c/mesh/src/buffer.h:

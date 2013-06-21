@@ -40,7 +40,7 @@ void parse(int connection_fd, struct nodelist *noderoot, struct pkglist *pkgroot
 
 		unsigned char ip[4] = {message.content[0], message.content[1], message.content[2], message.content[3]};
 		unsigned short prt = (unsigned short) (message.content[4]<<8)|message.content[5];
-		node_add(noderoot, ip, prt);
+		//node_add(noderoot, ip, prt);
 		node_list(noderoot);
 		node_search(noderoot, ip, prt);
 	}

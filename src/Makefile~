@@ -32,8 +32,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = i686-pc-linux-gnu
-host_triplet = i686-pc-linux-gnu
+build_triplet = x86_64-unknown-linux-gnu
+host_triplet = x86_64-unknown-linux-gnu
 bin_PROGRAMS = mesh$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -47,12 +47,15 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_mesh_OBJECTS = main.$(OBJEXT) conn_io.$(OBJEXT) \
-	conn_server.$(OBJEXT) messagelist.$(OBJEXT)
+
+am_mesh_OBJECTS = main.$(OBJEXT) conn_client.$(OBJEXT) \
+	conn_io.$(OBJEXT) conn_server.$(OBJEXT) parse.$(OBJEXT) \
+	new.$(OBJEXT) broadcast.$(OBJEXT) pkglist.$(OBJEXT)
+
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
-AM_V_lt = $(am__v_lt_$(V))
-am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 mesh_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -67,35 +70,35 @@ LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
 	$(AM_CFLAGS) $(CFLAGS)
-AM_V_CC = $(am__v_CC_$(V))
-am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+AM_V_CC = $(am__v_CC_@AM_V@)
+am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
 am__v_CC_0 = @echo "  CC    " $@;
-AM_V_at = $(am__v_at_$(V))
-am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+AM_V_at = $(am__v_at_@AM_V@)
+am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 CCLD = $(CC)
 LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CCLD = $(am__v_CCLD_$(V))
-am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+AM_V_CCLD = $(am__v_CCLD_@AM_V@)
+am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD  " $@;
-AM_V_GEN = $(am__v_GEN_$(V))
-am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+AM_V_GEN = $(am__v_GEN_@AM_V@)
+am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(mesh_SOURCES)
 DIST_SOURCES = $(mesh_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/detlev/fh/systemSoftware/mesh/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run aclocal-1.11
 ALL_LINGUAS = 
-AMTAR = $${TAR-tar}
+AMTAR = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run tar
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
-AUTOCONF = ${SHELL} /home/detlev/fh/systemSoftware/mesh/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/detlev/fh/systemSoftware/mesh/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/detlev/fh/systemSoftware/mesh/missing --run automake-1.11
+AUTOCONF = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run automake-1.11
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -108,7 +111,7 @@ CYGPATH_W = echo
 DATADIRNAME = share
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
@@ -132,11 +135,11 @@ INTLTOOL_EXTRACT = /usr/bin/intltool-extract
 INTLTOOL_MERGE = /usr/bin/intltool-merge
 INTLTOOL_PERL = /usr/bin/perl
 INTLTOOL_UPDATE = /usr/bin/intltool-update
-INTLTOOL_V_MERGE = $(INTLTOOL__v_MERGE_$(V))
-INTLTOOL_V_MERGE_OPTIONS = $(intltool__v_merge_options_$(V))
-INTLTOOL__v_MERGE_ = $(INTLTOOL__v_MERGE_$(AM_DEFAULT_VERBOSITY))
-INTLTOOL__v_MERGE_0 = @echo "  ITMRG " $@;
-LD = /usr/bin/ld
+INTLTOOL_V_MERGE = @INTLTOOL_V_MERGE@
+INTLTOOL_V_MERGE_OPTIONS = @INTLTOOL_V_MERGE_OPTIONS@
+INTLTOOL__v_MERGE_ = @INTLTOOL__v_MERGE_@
+INTLTOOL__v_MERGE_0 = @INTLTOOL__v_MERGE_0@
+LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
@@ -145,8 +148,8 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/detlev/fh/systemSoftware/mesh/missing --run makeinfo
-MANIFEST_TOOL = :
+MAKEINFO = ${SHELL} /home/rm/code/seminar_c/mesh/missing --run makeinfo
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -178,41 +181,41 @@ STRIP = strip
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/detlev/fh/systemSoftware/mesh/src
-abs_srcdir = /home/detlev/fh/systemSoftware/mesh/src
-abs_top_builddir = /home/detlev/fh/systemSoftware/mesh
-abs_top_srcdir = /home/detlev/fh/systemSoftware/mesh
-ac_ct_AR = ar
+abs_builddir = /home/rm/code/seminar_c/mesh/src
+abs_srcdir = /home/rm/code/seminar_c/mesh/src
+abs_top_builddir = /home/rm/code/seminar_c/mesh
+abs_top_srcdir = /home/rm/code/seminar_c/mesh
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
-am__tar = $${TAR-tar} chof - "$$tardir"
-am__untar = $${TAR-tar} xf -
+am__tar = ${AMTAR} chof - "$$tardir"
+am__untar = ${AMTAR} xf -
 bindir = ${exec_prefix}/bin
-build = i686-pc-linux-gnu
+build = x86_64-unknown-linux-gnu
 build_alias = 
-build_cpu = i686
+build_cpu = x86_64
 build_os = linux-gnu
-build_vendor = pc
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = i686-pc-linux-gnu
+host = x86_64-unknown-linux-gnu
 host_alias = 
-host_cpu = i686
+host_cpu = x86_64
 host_os = linux-gnu
-host_vendor = pc
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/detlev/fh/systemSoftware/mesh/install-sh
-intltool__v_merge_options_ = $(intltool__v_merge_options_$(AM_DEFAULT_VERBOSITY))
-intltool__v_merge_options_0 = -q
+install_sh = ${SHELL} /home/rm/code/seminar_c/mesh/install-sh
+intltool__v_merge_options_ = @intltool__v_merge_options_@
+intltool__v_merge_options_0 = @intltool__v_merge_options_0@
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -249,8 +252,15 @@ mesh_SOURCES = \
 	conn_io.h \
 	conn_server.c \
 	conn_server.h \
-	messagelist.c \
-	messagelist.h
+	main.h \
+	parse.c \
+	parse.h \
+	new.c \
+	new.h \
+	broadcast.c \
+	broadcast.h \
+	pkglist.c \
+	pkglist.h
 
 mesh_LDFLAGS = 
 mesh_LDADD = 
@@ -357,21 +367,21 @@ include ./$(DEPDIR)/pkglist.Po
 	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(COMPILE) -c $<
+#	$(AM_V_CC@am__nodep@)$(COMPILE) -c $<
 
 .c.obj:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
 	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 #	$(AM_V_CC)source='$<' object='$@' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(COMPILE) -c `$(CYGPATH_W) '$<'`
+#	$(AM_V_CC@am__nodep@)$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
 .c.lo:
 	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
 #	$(AM_V_CC)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+#	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
 mostlyclean-libtool:
 	-rm -f *.lo

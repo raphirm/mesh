@@ -1,4 +1,4 @@
-#ifndef __THREAD_H__
-#define __THREAD_H__
-void sendReceive();
+#ifndef __MESSAGELIST_H__
+#define __MESSAGELIST_H__
+void  *startsthread(void *argument);
 #endif

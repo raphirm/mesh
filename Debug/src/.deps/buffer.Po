@@ -1,4 +1,4 @@
-main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
+buffer.o: /home/rm/code/seminar_c/mesh/src/buffer.c /usr/include/stdlib.h \
  /usr/include/features.h /usr/include/bits/predefs.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
@@ -23,8 +23,8 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
  /home/rm/code/seminar_c/mesh/src/main.h \
  /home/rm/code/seminar_c/mesh/src/conn_server.h \
  /home/rm/code/seminar_c/mesh/src/conn_io.h \
- /home/rm/code/seminar_c/mesh/src/thread.h \
- /home/rm/code/seminar_c/mesh/src/buffer.h
+ /home/rm/code/seminar_c/mesh/src/buffer.h \
+ /home/rm/code/seminar_c/mesh/src/thread.h
 
 /usr/include/stdlib.h:
 
@@ -118,6 +118,6 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
 
 /home/rm/code/seminar_c/mesh/src/conn_io.h:
 
-/home/rm/code/seminar_c/mesh/src/thread.h:
-
 /home/rm/code/seminar_c/mesh/src/buffer.h:
+
+/home/rm/code/seminar_c/mesh/src/thread.h:

@@ -65,8 +65,7 @@ void parse(int connection_fd, struct nodelist *noderoot, struct pkglist *pkgroot
 
 		}else{
 			printf("Packet mit id %i schon gesehen, verwerfen!\n",  ntohs(message.paketID));
-			message.paketType = 'F';
-				send_all(connection_fd, &message, sizeof(message));
+
 		}
 		
 		

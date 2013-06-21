@@ -1,24 +1,16 @@
-/********************************************************
- * An example source module to accompany...
- *
- * "Using POSIX Threads: Programming with Pthreads"
- *     by Brad nichols, Dick Buttlar, Jackie Farrell
- *     O'Reilly & Associates, Inc.
- *
- ********************************************************
- * llist_threads.h --
- *
- * Include file for linked list with threads support
- */
+#ifndef __MESSAGELIST_H__
+#define __MESSAGELIST_H__
+
+#include <stdlib.h>
 #include <pthread.h>
-
-
+#include <stdbool.h>
 
 typedef struct llist_node {
-	int socket;
-	thread_t thread;	
-  struct bufmsg *buffer;
+  int index;
+  pthread_t *thread;
+  struct bufmsg *datap;
   struct llist_node *nextp;
+  bool alive;
 } llist_node_t;
 
 typedef struct llist { 
@@ -27,8 +19,10 @@ typedef struct llist {
 } llist_t;
 
 int llist_init (llist_t *llistp);
-int llist_insert_data (index_t index, void *datap, llist_t *llistp);
-int llist_remove_data(index_t index, void **datapp, llist_t *llistp);
-int llist_find_data(index_t index, void **datapp, llist_t *llistp);
-int llist_change_data(index_t index, void *datap, llist_t *llistp);
+int llist_insert_data (int index, pthread_t *thread, struct bufmsg *datap, llist_t *llistp, bool alive);
+int llist_remove_data(int index, llist_t *llistp);
+llist_node_t *llist_find_data(int index,  llist_t *llistp);
+int llist_change_data(int index, pthread_t *thread, struct bufmsg *datap, llist_t *llistp, bool alive);
 int llist_show(llist_t *llistp);
+
+#endif
