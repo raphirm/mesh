@@ -49,7 +49,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mesh_OBJECTS = main.$(OBJEXT) conn_io.$(OBJEXT) \
 	conn_server.$(OBJEXT) messagelist.$(OBJEXT) thread.$(OBJEXT) \
-	buffer.$(OBJEXT)
+	buffer.$(OBJEXT) newConnection.$(OBJEXT) \
+	pkglisthandler.$(OBJEXT) conn_client.$(OBJEXT)
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
@@ -247,7 +248,13 @@ mesh_SOURCES = \
 	thread.c \
 	thread.h \
 	buffer.c \
-	buffer.h
+	buffer.h \
+	newConnection.c \
+	newConnection.h \
+	pkglisthandler.c \
+	pkglisthandler.h \
+	conn_client.c \
+	conn_client.h
 
 mesh_LDFLAGS = 
 mesh_LDADD = \
@@ -341,10 +348,13 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/buffer.Po
+include ./$(DEPDIR)/conn_client.Po
 include ./$(DEPDIR)/conn_io.Po
 include ./$(DEPDIR)/conn_server.Po
 include ./$(DEPDIR)/main.Po
 include ./$(DEPDIR)/messagelist.Po
+include ./$(DEPDIR)/newConnection.Po
+include ./$(DEPDIR)/pkglisthandler.Po
 include ./$(DEPDIR)/thread.Po
 
 .c.o:

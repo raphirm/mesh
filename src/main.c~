@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	llist_init(nodes);
 	
 	struct packetList *pkgs;
-	msg_init(&pkgs);
+	pkgs = msg_init(&pkgs);
 	
 	int sock_fd, connection_fd;
 	pthread_t pthread;

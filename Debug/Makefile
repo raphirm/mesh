@@ -277,7 +277,8 @@ meshdoc_DATA = \
 	AUTHORS\
 	ChangeLog\
 	INSTALL\
-	NEWS
+	NEWS \
+	newConnection.c
 
 INTLTOOL_FILES = intltool-extract.in \
 	intltool-merge.in \

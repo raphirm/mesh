@@ -10,8 +10,7 @@ meshdoc_DATA = \
 	AUTHORS\
 	ChangeLog\
 	INSTALL\
-	NEWS \
-	newConnection.c
+	NEWS
 
 
 INTLTOOL_FILES = intltool-extract.in \

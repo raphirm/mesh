@@ -18,6 +18,7 @@
 
 void *listenT(void *argument)
 {
+	printf("Opened Listener");
 	int j = 0;
 	struct threadinfos *ti;
 	ti = (struct threadinfos *) argument;
@@ -39,9 +40,11 @@ void *listenT(void *argument)
 				int connection_fd = open_connection_to (ip, prt);
 				openNewNode (ti->routes, ti->nodes, ti->packages, connection_fd, ti->node_role);
 			}
+			
 			else if(message.paketType == 'C'){
 				
-				if(msg_check(&message, ti->packages)==0){
+				if(msg_check(&message, ti->packages)==0||message.paketID == 0){
+					printf("before add\n");
 					msg_add(socket, &message, ti->packages);
 					printf("Neues Packet empfangen mit ID %i, route vorhanden?\n", ntohs(message.paketID));
 					if((message.target == 1 && node_role == ZIEL) || (message.target == 0 && node_role == QUELLE)){

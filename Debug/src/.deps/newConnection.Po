@@ -1,7 +1,8 @@
-thread.o: /home/rm/code/seminar_c/mesh/src/thread.c /usr/include/stdlib.h \
- /usr/include/features.h /usr/include/bits/predefs.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
- /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+newConnection.o: /home/rm/code/seminar_c/mesh/src/newConnection.c \
+ /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/bits/predefs.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stddef.h \
  /usr/include/sys/types.h /usr/include/bits/types.h \
  /usr/include/bits/typesizes.h /usr/include/time.h /usr/include/endian.h \
@@ -22,14 +23,9 @@ thread.o: /home/rm/code/seminar_c/mesh/src/thread.c /usr/include/stdlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.4.5/include/stdbool.h \
  /home/rm/code/seminar_c/mesh/src/main.h \
  /home/rm/code/seminar_c/mesh/src/conn_server.h \
- /home/rm/code/seminar_c/mesh/src/conn_io.h /usr/include/sys/socket.h \
- /usr/include/sys/uio.h /usr/include/bits/uio.h \
- /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
- /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
- /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /home/rm/code/seminar_c/mesh/src/buffer.h /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/stdint.h \
- /usr/include/bits/wchar.h /usr/include/bits/in.h
+ /home/rm/code/seminar_c/mesh/src/conn_io.h \
+ /home/rm/code/seminar_c/mesh/src/thread.h \
+ /home/rm/code/seminar_c/mesh/src/buffer.h
 
 /usr/include/stdlib.h:
 
@@ -123,32 +119,6 @@ thread.o: /home/rm/code/seminar_c/mesh/src/thread.c /usr/include/stdlib.h \
 
 /home/rm/code/seminar_c/mesh/src/conn_io.h:
 
-/usr/include/sys/socket.h:
-
-/usr/include/sys/uio.h:
-
-/usr/include/bits/uio.h:
-
-/usr/include/bits/socket.h:
-
-/usr/include/bits/sockaddr.h:
-
-/usr/include/asm/socket.h:
-
-/usr/include/asm-generic/socket.h:
-
-/usr/include/asm/sockios.h:
-
-/usr/include/asm-generic/sockios.h:
+/home/rm/code/seminar_c/mesh/src/thread.h:
 
 /home/rm/code/seminar_c/mesh/src/buffer.h:
-
-/usr/include/arpa/inet.h:
-
-/usr/include/netinet/in.h:
-
-/usr/include/stdint.h:
-
-/usr/include/bits/wchar.h:
-
-/usr/include/bits/in.h:

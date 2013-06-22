@@ -24,7 +24,9 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
  /home/rm/code/seminar_c/mesh/src/conn_server.h \
  /home/rm/code/seminar_c/mesh/src/conn_io.h \
  /home/rm/code/seminar_c/mesh/src/thread.h \
- /home/rm/code/seminar_c/mesh/src/buffer.h
+ /home/rm/code/seminar_c/mesh/src/buffer.h \
+ /home/rm/code/seminar_c/mesh/src/newConnection.h \
+ /home/rm/code/seminar_c/mesh/src/pkglisthandler.h
 
 /usr/include/stdlib.h:
 
@@ -121,3 +123,7 @@ main.o: /home/rm/code/seminar_c/mesh/src/main.c /usr/include/stdlib.h \
 /home/rm/code/seminar_c/mesh/src/thread.h:
 
 /home/rm/code/seminar_c/mesh/src/buffer.h:
+
+/home/rm/code/seminar_c/mesh/src/newConnection.h:
+
+/home/rm/code/seminar_c/mesh/src/pkglisthandler.h:
