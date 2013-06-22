@@ -71,7 +71,7 @@ int open_connection_to( const char *remote_name, int remote_port ){
     return 0;
   }	
 
-  if( connect( fd,(struct sockaddr *)&serv_addr, sizeof( serv_addr )) == -1 ){
+  if( connect( fd,(struct sockaddr *)&serv_addrp, sizeof( serv_addr )) == -1 ){
     perror( "ERROR connecting" );
     return 0;
   }

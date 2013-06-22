@@ -49,7 +49,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_mesh_OBJECTS = main.$(OBJEXT) conn_io.$(OBJEXT) \
 	conn_server.$(OBJEXT) messagelist.$(OBJEXT) thread.$(OBJEXT) \
-	buffer.$(OBJEXT)
+	buffer.$(OBJEXT) newConnection.$(OBJEXT) \
+	pkglisthandler.$(OBJEXT) conn_client.$(OBJEXT)
 mesh_OBJECTS = $(am_mesh_OBJECTS)
 mesh_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
@@ -247,7 +248,13 @@ mesh_SOURCES = \
 	thread.c \
 	thread.h \
 	buffer.c \
-	buffer.h
+	buffer.h \
+	newConnection.c \
+	newConnection.h \
+	pkglisthandler.c \
+	pkglisthandler.h \
+	conn_client.c \
+	conn_client.h
 
 mesh_LDFLAGS = 
 mesh_LDADD = \
@@ -341,10 +348,13 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/buffer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/conn_client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/conn_io.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/conn_server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/messagelist.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/newConnection.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkglisthandler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/thread.Po@am__quote@
 
 .c.o:

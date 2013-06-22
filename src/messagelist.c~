@@ -67,7 +67,7 @@ int llist_remove_data(int index, llist_t *llistp)
 
   pthread_mutex_lock(&(llistp->mutex));
   cur = llistp->first;
-  if(cur=llistp->first->index == index){
+  if(llistp->first->index == index){
 	 free(cur);
 	  llistp->first = NULL;
   }else{
@@ -104,30 +104,6 @@ llist_node_t  *llist_find_data(int index, llist_t *llistp )
   pthread_mutex_unlock(&(llistp->mutex));
   return NULL;
  
-}
-int llist_change_data(int index, pthread_t *thread, struct bufmsg *datap, llist_t *llistp, bool alive)
-{
-  llist_node_t *cur, *prev;
-  int status = -1; /* assume failure */
-
-  pthread_mutex_lock(&(llistp->mutex));
-
-  for (cur=prev=llistp->first; cur != NULL; prev=cur, cur=cur->nextp) {
-    if (cur->index == index) {
-      cur->datap = datap;
-	  cur->thread = thread;
-	  cur->alive = alive;
-      prev->nextp = cur->nextp;
-      free(cur);
-      status = 0;
-      break;
-    }
-
-  }
-
-  pthread_mutex_unlock(&(llistp->mutex));
-
-  return status;
 }
 int llist_show(llist_t *llistp)
 {

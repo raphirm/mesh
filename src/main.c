@@ -32,7 +32,8 @@
 #include <stdbool.h>
 #include "buffer.h"
 
-
+#include "newConnection.h"
+#include "pkglisthandler.h"
 
 
  
@@ -45,11 +46,7 @@ int   tcp_port  = NO_TCP_PORT;
 void report_error( char* message ) {
 	fprintf( stderr, "ERROR: %s\n", message );
 }
-void  *startthread(void *argument)
-{
-	
-	startsthread (argument);
-}
+
 void parse_options( int argc, char *argv[])
 {
 	char optchar;
@@ -94,14 +91,8 @@ int main(int argc, char *argv[])
 	nodes = malloc(sizeof(llist_t));
 	llist_init(nodes);
 	
-	struct pkgListItem packages[1024];
-	int i;
-	for(i = 0; i < sizeof(packages) / sizeof(struct pkgListItem); i++)
-	{
-		packages[i].id = 0;
-		packages[i].pid = 0;
-		packages[i].sourceSocket = 0;
-	}
+	struct packetList *pkgs;
+	pkgs = msg_init(&pkgs);
 	
 	int sock_fd, connection_fd;
 	pthread_t pthread;
@@ -116,20 +107,8 @@ int main(int argc, char *argv[])
 		}
 
 		if( (connection_fd = connect_with_client( sock_fd )) != 0) {
-			pthread_t thread;
-			struct bufmsg *buffer;
-			buffer = malloc(sizeof(struct bufmsg));
-			buf_init(buffer);
-			bool alive = true;
-			llist_insert_data(connection_fd, &thread, buffer, nodes, alive);
-			struct threadinfos *ti;
-			ti = malloc(sizeof(struct threadinfos));
-			ti->nodes = nodes;
-			ti->packages = &packages;
-			ti->routes = routes;
-			ti->me = llist_find_data (connection_fd, nodes);
-			pthread_create(&thread, NULL, (void*)&startthread ,(void *) ti);
-			pthread_detach(&thread);
+			openNewNode(routes, nodes, pkgs, connection_fd, node_role);
+
 		
 			//start_thread
 			//parse(connection_fd, noderoot, pkgroot, routes, node_role);

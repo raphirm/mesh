@@ -24,7 +24,13 @@ mesh_SOURCES = \
 	messagelist.h \
 	thread.c \
 	thread.h \
-	buffer.c
+	buffer.c \
+	buffer.h \
+	newConnection.c \
+	newConnection.h \
+	pkglisthandler.c \
+	pkglisthandler.h \
+	conn_client.c
 
 mesh_LDFLAGS = 
 
