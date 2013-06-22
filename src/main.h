@@ -62,3 +62,14 @@ struct nodelist{
 	pthread_t thread;
 	struct bufmsg *buffer;
 }
+
+
+
+struct packetList {
+#define PACKAGE_LIST_MAX_ITEMS = 1024
+	struct pkgListItem packages[PACKAGE_LIST_MAX_ITEMS];
+	pthread_mutex_t lock= PTHREAD_MUTEX_INITIALIZER;	
+}
+
+
+

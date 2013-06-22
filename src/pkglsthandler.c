@@ -1,9 +1,10 @@
 #include <stdlib.h>      // exit
 #include <stdio.h>
 #include <string.h>      // strlen
+#include "main.h"
 
 
-#define PACKAGE_LIST_MAX_ITEMS=128;
+#define PACKAGE_LIST_MAX_ITEMS = 128;
 
 pkgLstItem pkgList[PACKAGE_LIST_MAX_ITEMS];
 
@@ -12,7 +13,7 @@ pkgLstItem pkgList[PACKAGE_LIST_MAX_ITEMS];
  * */
 bool check(int connection_fd, struct paket *message)
 {	
-	int idx= calcIdx( message)
+	int idx= calcIdx( message);
 	return ( pkgList[idx]!=NULL); 
 }
 
@@ -30,5 +31,21 @@ void add (int connection_fd, struct paket *message){
 int calcIdx(struct paket *message){
 	return message.paketID % PACKAGE_LIST_MAX_ITEMS;
 }
-	
+
+
+void list(){
+	for	(int idx = 0; idx <  PACKAGE_LIST_MAX_ITEMS; idx++) {
+		if(	pkgList[idx]==null) 
+			printf("%i:%s\n",idx, "null" ), return;
+		 
+		printf("%i:%i\n",idx, pkgList[idx].socket );
+	}	
+}
+
+
+void init(struct *packetList) {
+     pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+}
+
+
 	
